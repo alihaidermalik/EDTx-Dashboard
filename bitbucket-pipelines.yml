@@ -1,0 +1,40 @@
+image: node:10
+clone:
+  depth: full
+options:
+  size: 2x
+pipelines:
+  default:
+    - step:
+        caches:
+          - node
+        script:
+            - npm install
+            - npm test
+  branches:
+    master:
+      - step:
+          caches:
+            - node
+          script:
+            - npm install
+            - npm test
+            - CI=false npm run-script build
+      - step:
+          script:
+            - response=$(curl -X POST -is -u $BITBUCKET_USERNAME:$BITBUCKET_APP_PASSWORD -H 'Content-Type:application/json' https://api.bitbucket.org/2.0/repositories/swedwise/edtx-api/pipelines/ -d '{"target":{"ref_type":"branch","type":"pipeline_ref_target","ref_name":"master"}}')
+            - echo $response
+            - if [[ "$response" != "HTTP/2 20"* ]]; then exit 1; fi;
+    develop:
+      - step:
+          caches:
+            - node
+          script:
+            - npm install
+            - npm test
+            - CI=false npm run-script build
+      - step:
+          script:
+            - response=$(curl -X POST -is -u $BITBUCKET_USERNAME:$BITBUCKET_APP_PASSWORD -H 'Content-Type:application/json' https://api.bitbucket.org/2.0/repositories/swedwise/edtx-api/pipelines/ -d '{"target":{"ref_type":"branch","type":"pipeline_ref_target","ref_name":"develop"}}')
+            - echo $response
+            - if [[ "$response" != "HTTP/2 20"* ]]; then exit 1; fi;

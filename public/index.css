@@ -1,0 +1,349 @@
+html, body, #app, #app>div {
+    height: 100%;
+    font-family : 'Roboto';
+}
+select.form-control,
+textarea.form-control,
+input.form-control {
+    font-size: 16px;
+}
+input[type=file] {
+    width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 20px;
+}
+.container {
+    display: contents;
+}
+.form-row {
+    padding: 10px;
+}
+
+
+
+.dropdown-toggle {
+    text-align: left;
+}
+.dropdown-toggle::after {
+    float: right;
+    margin-top: 4%;
+}
+.dropdown-menu{
+    width: 100%;
+}
+.dropdown {
+    margin-top: 12.5%;
+}
+.dropdown-toggle {
+    background-color: white;
+    color: #6c757d;
+    border-color: #ced4da;
+    width: 100%;
+}
+.dropdown-toggle:hover {
+    background-color: white;
+    color: #6c757d;
+    border-color: #ced4da;
+    width: 100%;
+}
+
+.customheckBox input[type=checkbox] {
+    margin-top: 14px;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+}
+
+.inpuCheckBox {
+    width: 20px;
+    height :20px;
+    vertical-align: middle;
+}
+
+.customeLabelWihCheckBox {
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+.addNewHeadingDiv {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.addNewButtonDiv {
+    flex-basis: 40%;
+}
+.addNewCertificateForm {
+    margin-left: 15px;
+}
+.addNewCertificateFormDiv {
+    display: block;
+    overflow: hidden;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    background-color: white;
+    color: #6c757d;
+    border-color: #ced4da;
+    width: 100%;
+}
+.addNewButton {
+    background-color: rgba(0, 0, 0, 0.14);
+    color: #3f51b5;
+    padding: 10px;
+    font-weight: bold;
+    text-align: start;
+}
+.addNewButton:hover {
+    background-color: rgba(72, 71, 141, 0.14);
+    color: #3f51b5;
+    padding: 10px;
+    font-weight: bold;
+}
+.textArea {
+    resize: none;
+}
+.heightMarginLeftScrollAuto {
+    height: 100px;
+    overflow-y: auto;
+    margin-left: 20px;
+}
+.marginLeft {
+    margin-left: 20px;
+}
+.addNewExternalCourceBtn {
+    position: absolute;
+    left: 65%;
+}
+.displayInlineBlock {
+    display: inline-block;
+}
+.textOut {
+    text-overflow: ellipsis;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/*icon button css*/
+.deleteBtn {
+    border: none;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    width: 0px;
+    height: 0px;
+}
+.deleteBtn:hover {
+    border: none;
+    background-color: #ffffff;
+    color: DodgerBlue;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    width: 0px;
+    height: 0px;
+}
+.deleteBtn:focus {
+    box-shadow: none;
+}
+.deleteBtn:not(:disabled):not(.disabled).active, .deleteBtn:not(:disabled):not(.disabled):active, .show>.deleteBtn.dropdown-toggle {
+    box-shadow: none;
+    width: 0%;
+}
+.deleteBtn:not(:disabled):not(.disabled).active:focus, .deleteBtn:not(:disabled):not(.disabled):active:focus, .show>.deleteBtn.dropdown-toggle:focus {
+    box-shadow: none;
+}
+/*end icon button css*/
+.removeFileBtn {
+    margin-top: -58px;
+}
+.deleteAdditionalFieldButton {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    font-size: xx-large;
+    position: absolute;
+    top: -12px;
+}
+.deleteAdditionalFieldButton:hover {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    font-size: xx-large;
+    position: absolute;
+    top: -12px;
+}
+.deleteAdditionalFieldButton:not(:disabled):not(.disabled).active, .deleteAdditionalFieldButton:not(:disabled):not(.disabled):active, .show>.deleteAdditionalFieldButton.dropdown-toggle {
+    box-shadow: none;
+    width: 100%;
+    font-size: xx-large;
+    position: absolute;
+    top: -12px;
+}
+.linkCreateActivity:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+.backButton {
+    border-radius: 0px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-top: -3%;
+}
+.pageHeading {
+    border-radius: 0px;
+    background-color: white;
+    color: #17a2b8;
+    border-color: #17a2b8;
+    text-align: center;
+    margin: 0 auto !important;
+}
+.pageHeading:hover {
+    border-radius: 0px;
+    background-color: #17a2b8;
+    color: white;
+    border-color: #17a2b8;
+}
+.addNewFieldDropDown {
+    margin-top: 0px;
+}
+.selectCertificateViewForm {
+    margin-left: 15px;
+    width: 82.7%;
+}
+.table thead th {
+    vertical-align: middle;
+    background-color: #424242;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    font-weight: normal;
+}
+.table td {
+    vertical-align: middle;
+    font-size: 12px;
+    text-align: center;
+}
+.table th {
+    min-height: 50px;
+    text-align: center;
+}
+.table tr {
+    height: auto;
+    text-align: center;
+}
+.addNewArchiveModalDropDowns{
+    margin-top: 9.5%;
+}
+.customScrollToDropDowns {
+    max-height: 260px;
+    overflow-y: auto;
+}
+button.applyBtn.btn.btn-sm.btn-primary {
+    width: 12%;
+    background-color: #0062cc;
+    color: #ffffff;
+}
+.react-bootstrap-daterangepicker-container {
+    width: 100%;
+}
+i{
+    margin-right: 10px;
+}
+#userArchivesTabView-tab-archives {
+    width: 50%;
+    text-align: center;
+    font-weight: bold;
+}
+#userArchivesTabView-tab-certificates {
+    width: 50%;
+    text-align: center;
+    font-weight: bold;
+}
+.backButtonUserArchive {
+    border-radius: 0px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.changeLinkOnHover:hover a{
+    color: #ffffff;
+}
+.logoBtn:hover{
+    color: rgba(0, 0, 0, 0.87);
+}
+.logoBtn{
+    color: rgba(0, 0, 0, 0.87);
+}
+.spanLogo{
+    position: relative;
+    opacity: 1; font-size: 14px;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 0px;
+    user-select: none;
+    padding-left: 16px;
+    padding-right: 16px;
+    color: rgba(0, 0, 0, 0.87);
+}
+.viewLogoImage{
+    width: 60%;
+    border: 1px solid #007bff;
+    text-align: center;
+}
+.settingButton{
+    color: #424242;
+    top : 0px !important;
+}
+.pagination {
+    background-color: white;
+}
+.pagination li {
+    border: 1px solid #17a2b8;
+    padding: 3px 12px 3px 12px;
+    margin-right: 1px
+}
+.pagination li a{
+    color: #17a2b8;
+}
+.pagination .active {
+    color: white;
+    background-color: #17a2b8;
+}
+.undefined {
+    color: white !important;
+}
+.pagination li:hover a{
+    color: white;
+}
+.pagination li:hover {
+    color: white !important;
+    background-color: #17a2b8;
+}
+.pagination li a:hover {
+    text-decoration: none;
+}
+.ql-tooltip{
+    left: 0px !important;
+    top: 0px !important;
+}
+input#course_image {
+    outline: none;
+}
+button.logoBtn.btn.btn-outline-primary {
+    background-color: white !important;
+    color: black !important;
+    border-color: #ced4da;
+}
+@media only screen and (max-width: 1325px) {
+    .modal-dialog {
+        max-width: 500px;
+        margin: 1.75rem 0 1.75rem auto;
+    }
+    .modal {
+        z-index: 99999999;
+    }
+}

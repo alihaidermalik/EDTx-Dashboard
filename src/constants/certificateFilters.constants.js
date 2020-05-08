@@ -1,0 +1,4 @@
+export const certificateFiltersConstants = {
+    SET_FILTERS_VALUES: 'USERS_SET_FILTERS_VALUES',
+    SET_FILTERS_DROPDOWNS: 'USERS_SET_FILTERS_DROPDOWNS',
+};

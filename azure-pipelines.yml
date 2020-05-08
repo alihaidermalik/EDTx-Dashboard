@@ -1,0 +1,64 @@
+# Build and test EDTx frontend
+
+trigger:
+- master
+- develop
+- feature/*
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+steps:
+
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      npm install
+      npm test
+    displayName: 'npm install and test'
+    env:
+      CI: true
+
+  - script: |
+      npm run-script build
+      mv  build/* $(Build.ArtifactStagingDirectory)
+    env:
+      CI: false
+
+  - task: PublishTestResults@2
+    condition: succeededOrFailed()
+    inputs:
+      testRunner: JUnit
+      testResultsFiles: '**/TEST-RESULTS.xml'
+    displayName: 'Publish test results'
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish Build Artefact"
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: 'edtx'
+
+  # - script: |
+  #     response=$(curl -X POST -is -u $BITBUCKET_USERNAME:$BITBUCKET_APP_PASSWORD -H 'Content-Type:application/json' https://api.bitbucket.org/2.0/repositories/swedwise/edtx-api/pipelines/ -d '{"target":{"ref_type":"branch","type":"pipeline_ref_target","ref_name":"master"}}')
+  #     echo $response
+  #     #if [[ "$response" != "HTTP/2 20"* ]]; then exit 1; fi;
+  #   displayName: '[master] Deploy EDTx frontend to Heroku and trigger EDTx Backend on Bitbucket'
+  #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  #   env:
+  #     HEROKU_API_KEY: $(Heroku.APIKey)
+  #     BITBUCKET_USERNAME: $(Bitbucket.Username)
+  #     BITBUCKET_APP_PASSWORD: $(Bitbucket.AppPassword)
+
+  # - script: |
+  #     response=$(curl -X POST -is -u $BITBUCKET_USERNAME:$BITBUCKET_APP_PASSWORD -H 'Content-Type:application/json' https://api.bitbucket.org/2.0/repositories/swedwise/edtx-api/pipelines/ -d '{"target":{"ref_type":"branch","type":"pipeline_ref_target","ref_name":"develop"}}')
+  #     echo $response
+  #     #if [[ "$response" != "HTTP/2 20"* ]]; then exit 1; fi;
+  #   displayName: '[develop] Trigger EDTx Backend on Bitbucket'
+  #   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/develop'))
+  #   env:
+  #     BITBUCKET_USERNAME: $(Bitbucket.Username)
+  #     BITBUCKET_APP_PASSWORD: $(Bitbucket.AppPassword)
+
