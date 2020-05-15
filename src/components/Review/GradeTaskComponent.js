@@ -186,9 +186,16 @@ class GradeTaskComponent extends React.Component {
         }
         this.activityId = this.props.location.pathname.split('/')[2]
         
-
+        console.log("======================================")
+        console.log(this.props.task.children[0].task)
         //Use this when Dawid fixes api
-        dispatch(homeworkActions.setHomeworkOnBlockByStudentId(this.activityId, this.props.task.task, this.props.student.id, gradeObject))
+
+        for(let i=0; i<this.props.task.children.length; i++){
+            dispatch(homeworkActions.setHomeworkOnBlockByStudentId(this.activityId, this.props.task.children[i].task, this.props.student.id, gradeObject))
+        }
+
+        //dispatch(homeworkActions.setHomeworkOnBlockByStudentId(this.activityId, this.props.task.children[0].task, this.props.student.id, gradeObject))
+       
         if (this.state.selectedOption === gradeConstants.ACCEPT_COMMENT) {
             //TODO: borde inte göra det här förrens setHomework fått ok respons
             var messageData = {

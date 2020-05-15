@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { coursesActions } from '../../actions';
+import { coursesActions, studentsActions } from '../../actions';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { List, ListItem } from 'material-ui/List';
@@ -61,6 +61,8 @@ class TaskPicker extends React.Component {
         const { dispatch } = this.props;
         this.props.handleChangeCourse(value);
         dispatch(coursesActions.getCourseTasktree(value));
+        //dispatch(studentsActions.getCohorts(this.props.course_id))
+        // here will cohorts will come
     }
     typeToText = (type) => {
         switch (type) {

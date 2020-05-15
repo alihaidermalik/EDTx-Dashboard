@@ -1,7 +1,8 @@
 import axios from "axios/index";
 
 export const studentsService = {   
-    getStudents, 
+    getStudents,
+    getCohorts, 
     
 }; 
 function getStudents(username = undefined, cohortGroup = undefined){
@@ -26,16 +27,21 @@ function getCohorts(course = undefined){
 
     let user = JSON.parse(localStorage.getItem('user'));
     
-    return axios.get(process.env.REACT_APP_API_URL + "/api/cohorts/course-v1:RuralMetro+FALI_1+2019_10_01/",
+    return axios.get(process.env.REACT_APP_API_URL + "/api/cohorts/" + course + "/",
         {
             headers: {
                 "X-Authorization": "Token " + user["access_token"]
             }
         })
         .then(response => {
+            console.log("================================= axios of getcohort")
             console.log(response)
             return response.data;
         })
+        .catch(function(error){
+            console.log("================================== error in axios getCohorts")
+            console.log(error);
+        });
 
 }
 

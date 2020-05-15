@@ -16,6 +16,8 @@ import { TaskPicker } from './TaskPicker';
 import { TrainingCenterPicker } from './TrainingCenterPicker';
 import Toggle from 'material-ui/Toggle';
 import DateTimePicker from '../DateTimePicker'
+import { studentsService } from '../../services';
+import axios from 'axios'
 
 const styles = {
     root: {
@@ -56,8 +58,10 @@ const getInitialState = (recieved_user_ids) => {
         selectedTasks: [],
         selectedHomework: [],
         selectedCohorts: [],
+        selectedCourseCohorts: [],
         selectedTrainingCenterResources: [],
         cohorts: [],
+        courseCohorts: [],
         resetDisabled: true,
         submitDisabled: true,
         open: false,
@@ -340,7 +344,33 @@ class CreateQuest extends Component {
         this.searchStudents();
     }
     handleChangeCourse = (value) => {
-        this.setState({ course_id: value })
+        const { dispatch } = this.props;
+        this.setState({ 
+            course_id: value,
+            courseCohorts: studentsActions.getCohorts(this.state.course_id), 
+        })
+        // console.log("=======================================")
+        // const a = studentsService.getCohorts(this.state.course_id)
+        // console.log("============================ course cohorts")
+        // console.log(a)
+        // console.log("============================= after console")
+
+        let user = JSON.parse(localStorage.getItem('user'));
+    
+     axios.get(process.env.REACT_APP_API_URL + "/api/cohorts/" + this.state.course_id + "/",
+        {
+            headers: {
+                "X-Authorization": "Token " + user["access_token"]
+            }
+        })
+        .then(response => {
+            console.log("================================= axios of getcohort")
+            console.log(response.data[0].name);
+        })
+        .catch(function(error){
+            console.log("================================== error in axios getCohorts")
+            console.log(error);
+        });
     }
     handleChangeTrainingCenter = (value) => {
         this.setState({
@@ -489,7 +519,7 @@ class CreateQuest extends Component {
         ]
         const Cohorts = [
            /* !fetching ?*/
-                <div style={styles.root}>
+                <div style={{flexDirection:"row", display:"flex"}}>
                     <List>
                         <Subheader>Select Cohorts</Subheader>
                         {!this.isEmpty(this.state.selectedCohorts)
@@ -514,6 +544,33 @@ class CreateQuest extends Component {
                             </Pagination>
                             :
                             <div> No cohorts available.</div>
+                        }
+                    </List>
+
+                    <List>
+                        <Subheader>Select Course Cohorts</Subheader>
+                        {!this.isEmpty(this.state.selectedCourseCohorts)
+                            ?
+                            <div style={styles.wrapper}>
+                                {
+                                    this.state.selectedCohorts.map(cohort => this.renderCohortChip(cohort))
+                                }
+                            </div>
+                            : null
+                        }
+                        {this.state.courseCohorts
+                            ?
+                            <Pagination
+                                data={this.state.courseCohorts}
+                            >
+                                <PaginationListItems
+                                    handleChangeCohortCheckbox={this.handleChangeCohortCheckbox}
+                                    selectedCourseCohorts={this.state.selectedCourseCohorts}
+                                    handleSelectAllCohorts={this.handleSelectAllCohorts}
+                                />
+                            </Pagination>
+                            :
+                            <div> No course cohorts available.</div>
                         }
                     </List>
                 </div>
