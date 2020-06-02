@@ -1,4 +1,4 @@
-import { TextField, FlatButton, Divider } from 'material-ui';
+import { TextField, FlatButton, Divider, Text } from 'material-ui';
 import Chip from 'material-ui/Chip';
 import CircularProgress from 'material-ui/CircularProgress';
 import { GridList, GridTile } from 'material-ui/GridList';
@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { alertActions, questsActions, studentsActions, messageActions } from '../../actions';
 import { Pagination, PaginationListItems } from './Pagination';
+import { PaginationCohorts, PaginationListCohorts } from './PaginationChorots';
 import QuestStepper from './QuestStepper';
 import { TaskPicker } from './TaskPicker';
 import { TrainingCenterPicker } from './TrainingCenterPicker';
@@ -364,8 +365,15 @@ class CreateQuest extends Component {
             }
         })
         .then(response => {
+            let arr = []
             console.log("================================= axios of getcohort")
-            console.log(response.data[0].name);
+            for (var i=0; i< response.data.length; i++){
+                console.log(response.data[i].name)
+                arr.push(response.data[i].name)
+                console.log(response.data[i].name)
+            }
+            this.setState({courseCohorts:arr});
+            console.log(this.state.courseCohorts)
         })
         .catch(function(error){
             console.log("================================== error in axios getCohorts")
@@ -521,7 +529,7 @@ class CreateQuest extends Component {
            /* !fetching ?*/
                 <div style={{flexDirection:"row", display:"flex"}}>
                     <List>
-                        <Subheader>Select Cohorts</Subheader>
+                        <Subheader>Select User</Subheader>
                         {!this.isEmpty(this.state.selectedCohorts)
                             ?
                             <div style={styles.wrapper}>
@@ -546,31 +554,32 @@ class CreateQuest extends Component {
                             <div> No cohorts available.</div>
                         }
                     </List>
-
                     <List>
-                        <Subheader>Select Course Cohorts</Subheader>
-                        {!this.isEmpty(this.state.selectedCourseCohorts)
+                    <Subheader>Select Course Cohort</Subheader>
+
+                    {!this.isEmpty(this.state.selectedCourseCohorts)
                             ?
                             <div style={styles.wrapper}>
                                 {
-                                    this.state.selectedCohorts.map(cohort => this.renderCohortChip(cohort))
+                                    this.state.selectedCourseCohorts.map(cohort => this.renderCohortChip(cohort))
                                 }
                             </div>
                             : null
                         }
-                        {this.state.courseCohorts
+
+                    {this.state.courseCohorts
                             ?
-                            <Pagination
+                            <PaginationCohorts
                                 data={this.state.courseCohorts}
                             >
-                                <PaginationListItems
+                                <PaginationListCohorts
                                     handleChangeCohortCheckbox={this.handleChangeCohortCheckbox}
-                                    selectedCourseCohorts={this.state.selectedCourseCohorts}
+                                    selectedCohorts={this.state.selectedCohorts}
                                     handleSelectAllCohorts={this.handleSelectAllCohorts}
                                 />
-                            </Pagination>
+                            </PaginationCohorts>
                             :
-                            <div> No course cohorts available.</div>
+                            <div> No cohorts available.</div>
                         }
                     </List>
                 </div>

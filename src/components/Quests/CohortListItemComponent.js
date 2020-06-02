@@ -65,7 +65,6 @@ export default class CohortListItemComponent extends React.Component {
              onClick={this.handleClick}
             >
                 <Subheader style={{ display: "flex", padding: "10px" }}>
-                    <Avatar src={cohort.profile_image.image_url_small} style={{ marginRight: "10px" }} />
                     <div style={{ width: "66%" }}>
                         <span>{cohort.name}</span>
                     </div>
@@ -80,12 +79,7 @@ export default class CohortListItemComponent extends React.Component {
                 {this.state.open ?
                     <div key="file-div" style={{lineHeight: "1.4em"}}>                        
                         {/* <div>Info on {cohort.first_name + " " + cohort.last_name}</div> */}
-                        <div><span><b>Email:</b> </span><span>{cohort.email}</span></div>
-                        <div><span><b>ID: </b></span><span>{cohort.id}</span></div>
-                        <div><span><b>Country: </b></span><span>{cohort.country}</span></div>
-                        <div><span><b>Year of birth: </b></span><span>{cohort.year_of_birth}</span></div>
-                        <div style={styles.tooltipText}><span><b>Enrolled in courses: </b></span><span>{cohort.courses.map((c) => { return c.course_details.course_name }).toString()}</span></div>
-                        <div style={styles.tooltipText}><span><b>Part of cohorts:</b> </span><span>{cohort.cohorts.map((c) => { return c.name }).toString()}</span></div>
+                        {/* <div style={styles.tooltipText}><span><b>Enrolled users: </b></span><span>{cohort.courses.map((c) => { return c.course_details.course_name }).toString()}</span></div> */}
                     </div>                        
                     : null
                 }
