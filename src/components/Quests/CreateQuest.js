@@ -317,6 +317,31 @@ class CreateQuest extends Component {
             resetDisabled: false,
         });
     }
+
+    handleChangeCohortsCheckbox = (event, checked, cohort) => {
+        var currentCohorts = this.state.selectedCohorts;
+        for(let i=0;i<cohort.users.length; i++){
+            if (checked) {
+                currentCohorts.push(cohort.users[i]);
+            }
+            else {
+                var index = currentCohorts.indexOf(cohort.users[i]);
+                if (index > -1) {
+                    currentCohorts.splice(index, 1);
+                }
+            }
+
+            let uniqueData = [...new Set(currentCohorts)];
+
+            this.setState({
+                selectedCohorts: uniqueData,
+                resetDisabled: false,
+            });
+
+        }
+        
+    }
+
     isEmpty = (obj) => {
         for (var key in obj) {
             if (obj.hasOwnProperty(key))
@@ -365,14 +390,7 @@ class CreateQuest extends Component {
             }
         })
         .then(response => {
-            let arr = []
-            console.log("================================= axios of getcohort")
-            for (var i=0; i< response.data.length; i++){
-                console.log(response.data[i].name)
-                arr.push(response.data[i].name)
-                console.log(response.data[i].name)
-            }
-            this.setState({courseCohorts:arr});
+            this.setState({courseCohorts:response.data});
             console.log(this.state.courseCohorts)
         })
         .catch(function(error){
@@ -396,7 +414,7 @@ class CreateQuest extends Component {
                 }}
                 style={styles.chip}
             >
-                {data.first_name + " " + data.last_name}
+                {data.name}
             </Chip>
         );
     }
@@ -557,23 +575,13 @@ class CreateQuest extends Component {
                     <List>
                     <Subheader>Select Course Cohort</Subheader>
 
-                    {!this.isEmpty(this.state.selectedCourseCohorts)
-                            ?
-                            <div style={styles.wrapper}>
-                                {
-                                    this.state.selectedCourseCohorts.map(cohort => this.renderCohortChip(cohort))
-                                }
-                            </div>
-                            : null
-                        }
-
                     {this.state.courseCohorts
                             ?
                             <PaginationCohorts
                                 data={this.state.courseCohorts}
                             >
                                 <PaginationListCohorts
-                                    handleChangeCohortCheckbox={this.handleChangeCohortCheckbox}
+                                    handleChangeCohortCheckbox={this.handleChangeCohortsCheckbox}
                                     selectedCohorts={this.state.selectedCohorts}
                                     handleSelectAllCohorts={this.handleSelectAllCohorts}
                                 />

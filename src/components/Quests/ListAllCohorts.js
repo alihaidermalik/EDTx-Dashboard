@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Subheader from 'material-ui/Subheader';
-import Avatar from 'material-ui/Avatar';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 import IconButton from 'material-ui/IconButton';
 import { grey400 } from 'material-ui/styles/colors';
@@ -31,7 +30,7 @@ const styles = {
         width: "100%"
     },
 }
-export default class CohortListItemComponent extends React.Component {
+export default class ListAllCohorts extends React.Component {
     constructor(props) {
         super(props);
 
@@ -79,12 +78,9 @@ export default class CohortListItemComponent extends React.Component {
                 {this.state.open ?
                     <div key="file-div" style={{lineHeight: "1.4em"}}>                        
                         {/* <div>Info on {cohort.first_name + " " + cohort.last_name}</div> */}
-                        <div><span><b>Email:</b> </span><span>{cohort.email}</span></div>
-                        <div><span><b>ID: </b></span><span>{cohort.id}</span></div>
-                        <div><span><b>Country: </b></span><span>{cohort.country}</span></div>
-                        <div><span><b>Year of birth: </b></span><span>{cohort.year_of_birth}</span></div>
-                        <div style={styles.tooltipText}><span><b>Enrolled in courses: </b></span><span>{cohort.courses.map((c) => { return c.course_details.course_name }).toString()}</span></div>
-                        <div style={styles.tooltipText}><span><b>Part of cohorts:</b> </span><span>{cohort.cohorts.map((c) => { return c.name }).toString()}</span></div>
+                        <div style={styles.tooltipText}><span><b>ID: </b></span><span>{cohort.id}</span></div>
+                        <div style={styles.tooltipText}><span><b>Is Locked: </b></span><span>{(cohort.lock).toString()}</span></div>
+                        <div style={styles.tooltipText}><span><b>Enrolled users: </b></span><span>{cohort.users.map((c) => { return c.username }).toString()}</span></div>
                     </div>                        
                     : null
                 }

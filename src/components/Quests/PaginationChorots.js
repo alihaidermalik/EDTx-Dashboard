@@ -3,7 +3,7 @@ import { ListItem } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import { Divider } from 'material-ui';
 
-import CohortListItemComponent from './CohortListItemComponent';
+import ListAllCohorts from './ListAllCohorts';
 const styles = {
     insetListItem: {
         marginLeft: "50px"
@@ -134,7 +134,13 @@ export class PaginationListCohorts extends React.Component {
                             />
                         }                       
                     >
-                        <li>{cohort}</li>
+                           <ListAllCohorts cohort={cohort}
+                            value={this.props.selectedCohorts && this.props.selectedCohorts.map((e) => {
+                                return e.id
+                            }).indexOf(cohort.id) > -1} onCheck={this.props.handleChangeCohortCheckbox}
+
+                        />
+                        {/* <li>{cohort}</li> */}
                     </ListItem>
 
                 ))
