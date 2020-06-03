@@ -321,8 +321,16 @@ class CreateQuest extends Component {
     handleChangeCohortsCheckbox = (event, checked, cohort) => {
         var currentCohorts = this.state.selectedCohorts;
         for(let i=0;i<cohort.users.length; i++){
+            let found = false
             if (checked) {
-                currentCohorts.push(cohort.users[i]);
+                for(let j=0;j<currentCohorts.length;j++){
+                    if(currentCohorts[j].username == cohort.users[i].username){
+                        found = true
+                    }
+                }
+                if(found == false){
+                    currentCohorts.push(cohort.users[i])
+                } 
             }
             else {
                 var index = currentCohorts.indexOf(cohort.users[i]);
@@ -370,8 +378,6 @@ class CreateQuest extends Component {
         this.searchStudents();
     }
     handleChangeCourse = (value) => {
-
-        console.log("================================ handlechangecourse"+value)
         const { dispatch } = this.props;
         this.setState({ 
             course_id: value,
