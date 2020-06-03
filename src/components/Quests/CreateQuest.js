@@ -370,20 +370,17 @@ class CreateQuest extends Component {
         this.searchStudents();
     }
     handleChangeCourse = (value) => {
+
+        console.log("================================ handlechangecourse"+value)
         const { dispatch } = this.props;
         this.setState({ 
             course_id: value,
             courseCohorts: studentsActions.getCohorts(this.state.course_id), 
         })
-        // console.log("=======================================")
-        // const a = studentsService.getCohorts(this.state.course_id)
-        // console.log("============================ course cohorts")
-        // console.log(a)
-        // console.log("============================= after console")
 
         let user = JSON.parse(localStorage.getItem('user'));
     
-     axios.get(process.env.REACT_APP_API_URL + "/api/cohorts/" + this.state.course_id + "/",
+     axios.get(process.env.REACT_APP_API_URL + "/api/cohorts/" + value + "/",
         {
             headers: {
                 "X-Authorization": "Token " + user["access_token"]
