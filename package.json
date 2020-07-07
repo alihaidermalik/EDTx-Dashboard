@@ -27,7 +27,7 @@
     "material-ui": "^0.20.0",
     "material-ui-icons": "^1.0.0-beta.36",
     "moment": "^2.24.0",
-    "npm": "^5.7.1",
+    "npm": "^6.14.6",
     "print-js": "^1.0.54",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
